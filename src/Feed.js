@@ -5,10 +5,14 @@ import InputOption from './InputOption'
 import Post from './Post'
 import { db } from './firebase'
 import firebase from 'firebase'
+import { useSelector } from 'react-redux'
+import { selectUser } from './features/userSlice'
+import FlipMove from 'react-flip-move'
 
 function Feed() {
     const [posts, setPosts] = useState([])
     const [input, setInput] = useState('')
+    const user = useSelector(selectUser)
     
     useEffect(() => {
         // Realtime listener to firebase
@@ -33,10 +37,10 @@ function Feed() {
         e.preventDefault()
 
         db.collection("posts").add({
-            name : "Nata Nael",
-            description : "This is from firebase",
+            name : user.user.displayName,
+            description : user.user.email,
             message : input,
-            photoURL : "",
+            photoURL : user.user.photoUrl || '',
             timestamp : firebase.firestore.FieldValue.serverTimestamp(),
         })
 
@@ -64,11 +68,12 @@ function Feed() {
                 </div>
 
             </div>
-
             {/* Posts */}
-            {posts.map(({ id, data : { name, description, message, photoURL } }) => (
-                <Post key={id} name={name} description={description} message={message} photoURL={photoURL}/>
-            ))}
+            <FlipMove>
+                {posts.map(({ id, data : { name, description, message, photoURL } }) => (
+                    <Post key={id} name={name} description={description} message={message} photoURL={photoURL}/>
+                ))}
+            </FlipMove>
         </div>
     )
 }
