@@ -51,7 +51,7 @@ function Login() {
 
     return (
         <div className="login">
-            <img src="https://logos-world.net/wp-content/uploads/2020/04/Linkedin-Logo-2011%E2%80%932019.png" alt="Header Logo"/>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/LinkedIn_logo_initials.png/600px-LinkedIn_logo_initials.png" alt="Header Logo"/>
             
             <form>
                 <input type="text" placeholder="Full Name" value={name} onChange={(e)=>setName(e.target.value)} name="" id=""/>
