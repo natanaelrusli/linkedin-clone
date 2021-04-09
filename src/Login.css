@@ -15,6 +15,17 @@
     margin-bottom: 20px;
 }
 
+.login__googleImage {
+    width: 2vw;
+    margin: 0 auto;
+    margin-top: 15px;
+    cursor: pointer;
+}
+
+.login__googleImage:hover {
+    margin-top: 10px;
+}
+
 .login > form {
     display: flex;
     flex-direction: column;
